@@ -5,11 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.android.fundamentals.R
 import com.android.fundamentals.data.models.Actor
 import com.android.fundamentals.domain.ActorsDataSource
+import kotlinx.android.synthetic.main.fragment_workshop_04.*
 
 class WS04DiffUtilsFragment : Fragment() {
 
@@ -24,11 +25,10 @@ class WS04DiffUtilsFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val recycler: RecyclerView = view.findViewById(R.id.rv_actors)
         adapter = WS04ActorsAdapter()
-        recycler.layoutManager = LinearLayoutManager(requireContext())
-        recycler.adapter = adapter
-        view.findViewById<View>(R.id.shuffle_button).setOnClickListener {
+        rv_actors.layoutManager = LinearLayoutManager(requireContext())
+        rv_actors.adapter = adapter
+        shuffle_button.setOnClickListener {
             shuffleActors()
         }
     }
@@ -44,10 +44,13 @@ class WS04DiffUtilsFragment : Fragment() {
     }
 
     private fun shuffleActors() {
+        val originalList : List<Actor> = ActorsDataSource().getActors()
         val shuffledList: List<Actor> = ActorsDataSource().getActors().shuffled()
         adapter.bindActors(shuffledList)
         // TODO: Replace notifyDataSetChanged for updating the recyclerView to DiffUtil.Callback.
-        adapter.notifyDataSetChanged()
+        val callback = ActorDiffUtilCallback(originalList, shuffledList)
+        val result : DiffUtil.DiffResult = DiffUtil.calculateDiff(callback)
+        result.dispatchUpdatesTo(adapter)
     }
 
     companion object {
