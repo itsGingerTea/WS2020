@@ -1,3 +1,2 @@
-rootProject.name = 'FundamentalsAssignments'
-
 include ':app'
+rootProject.name = "My Application"

@@ -4,5 +4,10 @@
     <dimen name="value_16dp">16dp</dimen>
     <dimen name="value_8dp">8dp</dimen>
     <dimen name="value_4dp">4dp</dimen>
+    <dimen name="space_x1">8dp</dimen>
+
+    <!-- FragmentActors -->
+    <dimen name="fragment_actors_avatar_space">48dp</dimen>
+    <!-- FragmentActors -->
 
 </resources>
