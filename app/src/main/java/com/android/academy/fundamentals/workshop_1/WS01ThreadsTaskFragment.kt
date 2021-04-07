@@ -1,11 +1,15 @@
 package com.android.academy.fundamentals.workshop_1
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.os.Message
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.android.academy.fundamentals.R
+import kotlinx.android.synthetic.main.fragment_ws_01.*
 
 class WS01ThreadsTaskFragment: Fragment(R.layout.fragment_ws_01) {
 
@@ -13,9 +17,11 @@ class WS01ThreadsTaskFragment: Fragment(R.layout.fragment_ws_01) {
     private var threadTextView : TextView? = null
 
     //TODO(WS1:2) Create a private val handler and set yours
+    private val handler = MyHandler()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        findViews(view)
+        threadButton = thread_button
+        threadTextView = thread_text_view
         threadButton?.setOnClickListener {
             startThread()
             startRunnable()
@@ -28,14 +34,12 @@ class WS01ThreadsTaskFragment: Fragment(R.layout.fragment_ws_01) {
         super.onDestroyView()
     }
 
-    private fun findViews(view: View) {
-        threadButton = view.findViewById(R.id.thread_button)
-        threadTextView = view.findViewById(R.id.thread_text_view)
-    }
-
     private fun startThread() {
         printMessage(getString(R.string.wait))
         //TODO(WS1:5) create your thread and start it
+        val thread = MyThread()
+        thread.start()
+        printMessage("Подождите")
     }
 
     private fun startRunnable() {
@@ -49,6 +53,11 @@ class WS01ThreadsTaskFragment: Fragment(R.layout.fragment_ws_01) {
 
     //TODO(WS1:1) Create inner class Handler
     // example: MyHandler : Handler(Looper.getMainLooper())
+    inner class MyHandler : Handler(Looper.getMainLooper()) {
+        override fun handleMessage(msg: Message) {
+            printMessage(msg.data.getString(MESSAGE_KEY, ""))
+        }
+    }
 
     //TODO(WS1:2) override function handleMessage(mes: Message)
     // at the function run printMessage
@@ -57,6 +66,14 @@ class WS01ThreadsTaskFragment: Fragment(R.layout.fragment_ws_01) {
     //TODO(WS1:3) Create inner class Thread
     // example: MyThread : Thread()
     // override function run
+    inner class MyThread : Thread() {
+        override fun run() {
+            sleep(6000)
+            val mes = Message()
+            mes.data.putString(MESSAGE_KEY, getString(R.string.thread_worked))
+            handler.sendMessage(mes)
+        }
+    }
 
     //TODO(WS1:4) at the run function emulate long work with sleep(6000)
     // create Message, put string to the message.data with MESSAGE_KEY
