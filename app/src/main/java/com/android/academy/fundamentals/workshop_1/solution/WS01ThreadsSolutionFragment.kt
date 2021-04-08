@@ -8,10 +8,10 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.android.academy.fundamentals.R
+import com.android.fundamentals.R
 
 @Suppress("unused")
-class WS01ThreadsSolutionFragment: Fragment(R.layout.fragment_ws_01) {
+class  WS01ThreadsSolutionFragment: Fragment(R.layout.fragment_ws_01) {
 
     private var threadButton : Button? = null
     private var threadTextView : TextView? = null

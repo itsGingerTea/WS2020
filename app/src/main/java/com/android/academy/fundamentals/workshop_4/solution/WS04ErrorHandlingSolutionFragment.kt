@@ -6,10 +6,9 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.android.academy.fundamentals.R
+import com.android.fundamentals.R
 import kotlinx.coroutines.*
 import java.io.IOException
-import java.lang.StringBuilder
 
 class WS04ErrorHandlingSolutionFragment : Fragment(R.layout.fragment_ws_04) {
 
