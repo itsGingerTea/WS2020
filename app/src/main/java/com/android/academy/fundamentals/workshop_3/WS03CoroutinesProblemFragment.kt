@@ -20,8 +20,6 @@ class WS03CoroutinesProblemFragment : Fragment(R.layout.fragment_ws_03) {
     // This coroutines scope we run
     // it is variable, because Job can not be restarted after cancellation and
     // we have to create new one
-    // TODO: WS_5_03_9 - Remove exception handler
-    // TODO: WS_5_03_10 - Replace SupervisorJob with just Job
     private var scope = CoroutineScope(
         SupervisorJob() +
                 Dispatchers.Default +
@@ -54,21 +52,14 @@ class WS03CoroutinesProblemFragment : Fragment(R.layout.fragment_ws_03) {
     private fun startCoroutines() {
         toggleButtons(true)
 
-        // TODO: WS_5_03_1 - Add run odd number producing coroutine via launch in scope
         scope.launch { runOddsCoroutine() }
 
-        // TODO: WS_5_03_2 - Add run negatives number producing coroutine via launch in scope
         //scope.launch { runNegativesCoroutine() }
 
-        // TODO: WS_5_03_3 - Add run mod by two result from number coroutine via launch in scope
         scope.launch { runModByTwoCoroutine() }
 
-        // TODO: WS_5_03_7 - Add run mod by two result from number coroutine via launch in GlobalScope
         globalScopeJob = GlobalScope.launch { runModByTwoCoroutine() }
 
-        // TODO: Don't forget to save job for the future cancellation
-
-        // TODO: WS_5_03_4 - Add run coroutine that fails after a second
         scope.launch { runCoroutineThatFails() }
     }
 
@@ -111,16 +102,12 @@ class WS03CoroutinesProblemFragment : Fragment(R.layout.fragment_ws_03) {
     }
 
     private suspend fun showResult(text: String, resultView: TextView?) {
-        // TODO: WS_5_03_6 - Fix access of UI component from main dispatcher
-        // TODO: Don't forget about suspend keyword
-
         withContext(Main) {
             resultView?.text = text
         }
     }
 
     private fun cancelCoroutines() {
-        // TODO: WS_5_03_5 - Add cancellation of all current jobs via parent job
 
         scope.cancel()
 
@@ -150,11 +137,8 @@ class WS03CoroutinesProblemFragment : Fragment(R.layout.fragment_ws_03) {
     }
 
     override fun onDestroyView() {
-        // TODO: WS_5_03_8 - Add Global Scope job cancelling to avoid leaks
-        // TODO: use WS03CoroutinesProblemFragment#globalScopeJob
         globalScopeJob?.cancel()
 
-        // TODO: WS_5_03_11 - Stop jobs to avoid leaks
         cancelCoroutines()
 
         // Clear views to avoid leaks

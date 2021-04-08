@@ -16,7 +16,6 @@ import kotlinx.coroutines.withContext
 
 class WS02FirstCoroutineTaskFragment: Fragment(R.layout.fragment_ws_02) {
 
-    // TODO(WS2:1) create scope (CoroutineScope) for future coroutines with context Dispatchers.Main
     private val scope = CoroutineScope(Main)
 
     private var textView: TextView? = null;
@@ -31,17 +30,10 @@ class WS02FirstCoroutineTaskFragment: Fragment(R.layout.fragment_ws_02) {
         scrollView = view.findViewById(R.id.scrollView)
 
         button?.setOnClickListener {
-            // TODO(WS2:2) create coroutine - call readFromFile from scope using launch and launch the app
             scope.launch { readFromFile() }
         }
     }
 
-    // TODO(WS2:3) reading from file is a heavy work, it should not be done from the main thread
-    //  let's add a context - Dispatcher to readFromFile
-
-    // TODO(WS2:4) make readFromFile suspended.
-    //  Add a keyword - suspend - to readFromFile function.
-    //  Then launch the app
     private suspend fun readFromFile() = withContext(IO) {
         val file = context?.resources?.openRawResource(R.raw.alice);
         file?.bufferedReader()
@@ -52,9 +44,6 @@ class WS02FirstCoroutineTaskFragment: Fragment(R.layout.fragment_ws_02) {
                 }
     }
 
-    // TODO(WS2:5) the app crashes because textView is updated not from the main thread (UI thread)
-    //  you need to add context - Dispatchers.Main - and suspend to updateTextView so the view is updated from the main thread
-    //  launch the app and check if the app works correctly
     private suspend fun updateTextView(text: String) = withContext(Main){
         textView?.append("\n$text")
         scrollView?.fullScroll(View.FOCUS_DOWN)

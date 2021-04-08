@@ -41,10 +41,8 @@ class WS04ErrorHandlingProblemFragment : Fragment(R.layout.fragment_ws_04) {
         }
     }
 
-    // TODO 01: Create the CoroutineScope from Default dispatchers and common Job.
     private fun createScope(): CoroutineScope = CoroutineScope(Default + Job())
 
-    // TODO 02: Create the CoroutineScope from Default dispatchers and Supervisor job.
     private fun createSuperScope(): CoroutineScope = CoroutineScope(Default + Job())
 
     private var coroutineScope = createScope()
@@ -86,10 +84,6 @@ class WS04ErrorHandlingProblemFragment : Fragment(R.layout.fragment_ws_04) {
         }
     }
 
-    // TODO 03: Run "methodWithException("failLaunchWithException")" inside a coroutine:
-    //  Try to launch the coroutine from regular "coroutineScope".
-    //  This will fail coroutine with Exception and close Application.
-    //  Catch and Log exception with proper Logger method (you can't).
     private fun failLaunchWithException() {
         try {
             coroutineScope.launch {
@@ -101,10 +95,6 @@ class WS04ErrorHandlingProblemFragment : Fragment(R.layout.fragment_ws_04) {
         }
     }
 
-    // TODO 04: Run "methodWithException("workWithHandledException")" inside a coroutine:
-    //  Launch coroutine from regular "coroutineScope".
-    //  Try to run the method and Catch exception.
-    //  Log exception with proper Logger method.
     private fun workWithHandledException() {
         try {
             coroutineScope.launch {
@@ -116,41 +106,18 @@ class WS04ErrorHandlingProblemFragment : Fragment(R.layout.fragment_ws_04) {
         }
     }
 
-    // TODO 05: Create "val deferred" with "methodWithException("failAwaitWithException")" inside a deferred:
-    //  Try to launch coroutine from regular "coroutineScope".
-    //  Inside that coroutine:
-    //  - create the deferred from regular "coroutineScope" and async builder.
-    //  - await result.
-    //  This will fail coroutine with Exception and close Application.
-    //  Catch and Log exception with proper Logger method (you can't).
     private fun failAwaitWithException() {
         methodWithException("failAwaitWithException", coroutineScope.isActive)
     }
 
-    // TODO 06: Create "val deferred" with "methodWithException("awaitWorkWithHandledException")" inside a deferred:
-    //  Create the deferred from regular "coroutineScope" and async builder.
-    //  Try to run the method and Catch exception inside a deferred.
-    //  Log exception with proper Logger method.
-    //  Launch coroutine from regular "coroutineScope".
-    //  Await result inside.
     private fun awaitWorkWithHandledException() {
         methodWithException("awaitWorkWithHandledException", coroutineScope.isActive)
     }
 
-    // TODO 07: Run "methodWithException("workWithExceptionHandler")" inside a coroutine:
-    //  Launch coroutine from regular "coroutineScope".
-    //  Add the "exceptionHandler" to the launch builder's coroutine context.
-    //  Inspect the realization of the "exceptionHandler".
-    //  Why we have to create another scope?
     private fun workWithExceptionHandler() {
         methodWithException("workWithExceptionHandler", coroutineScope.isActive)
     }
 
-    // TODO 08: Run "methodWithException("superWorkWithExceptionHandler")" inside a coroutine:
-    //  Launch coroutine from regular "coroutineSuperScope".
-    //  Add the "superExceptionHandler" to the launch builder's coroutine context.
-    //  Inspect the realization of the "superExceptionHandler".
-    //  Why we don't have to create another scope?
     private fun superWorkWithExceptionHandler() {
         methodWithException("superWorkWithExceptionHandler", coroutineScope.isActive)
     }

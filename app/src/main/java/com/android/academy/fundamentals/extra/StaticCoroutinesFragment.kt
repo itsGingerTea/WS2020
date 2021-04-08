@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.android.academy.fundamentals.R
+import com.android.fundamentals.R
 import kotlinx.coroutines.*
 
 class StaticCoroutinesFragment : Fragment(R.layout.fragment_static) {
