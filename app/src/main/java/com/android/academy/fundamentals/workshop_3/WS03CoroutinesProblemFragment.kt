@@ -93,6 +93,7 @@ class WS03CoroutinesProblemFragment : Fragment(R.layout.fragment_ws_03) {
             delay(500)
         }
         showResult(getString(R.string.finally_done), thirdCoroutineResultView)
+        Thread.currentThread().interrupt()
     }
 
     // Coroutine that fails after one second
@@ -110,6 +111,7 @@ class WS03CoroutinesProblemFragment : Fragment(R.layout.fragment_ws_03) {
     private fun cancelCoroutines() {
 
         scope.cancel()
+        Job().cancel()
 
         // Set new scope with fresh SupervisorJob after cancel
         scope = CoroutineScope(SupervisorJob() + Dispatchers.Default + exceptionHandler)

@@ -34,7 +34,7 @@ class WS02FirstCoroutineTaskFragment: Fragment(R.layout.fragment_ws_02) {
             scope.launch {
                 readFromFile()
             }
-            scope.cancel()
+            if (Thread.currentThread().isInterrupted) scope.cancel()
         }
     }
 
@@ -44,6 +44,7 @@ class WS02FirstCoroutineTaskFragment: Fragment(R.layout.fragment_ws_02) {
                 ?.useLines { lines ->
                     lines.forEach {
                         updateTextView(it)
+                        if (Thread.currentThread().isInterrupted) return@forEach
                     }
                 }
     }
