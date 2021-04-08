@@ -28,6 +28,8 @@ class WS01ThreadsTaskFragment: Fragment(R.layout.fragment_ws_01) {
     override fun onDestroyView() {
         threadButton = null
         threadTextView = null
+
+        Thread.currentThread().interrupt()
         super.onDestroyView()
     }
 

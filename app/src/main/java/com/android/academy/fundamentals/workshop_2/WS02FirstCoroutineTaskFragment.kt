@@ -11,6 +11,7 @@ import com.android.fundamentals.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -30,7 +31,10 @@ class WS02FirstCoroutineTaskFragment: Fragment(R.layout.fragment_ws_02) {
         scrollView = view.findViewById(R.id.scrollView)
 
         button?.setOnClickListener {
-            scope.launch { readFromFile() }
+            scope.launch {
+                readFromFile()
+            }
+            scope.cancel()
         }
     }
 

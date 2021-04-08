@@ -66,7 +66,7 @@ class WS03CoroutinesProblemFragment : Fragment(R.layout.fragment_ws_03) {
     // Coroutine that produces odd numbers every second
     private suspend fun runOddsCoroutine() {
         var count = 1
-        while (true) {
+        while (!Thread.currentThread().isInterrupted) {
             count += 2
             showResult(count.toString(), firstCoroutineResultView)
             delay(1_000)
@@ -76,7 +76,7 @@ class WS03CoroutinesProblemFragment : Fragment(R.layout.fragment_ws_03) {
     // Coroutine that produces next negative numbers every 1.5 second
     private suspend fun runNegativesCoroutine() {
         var count = 0
-        while (true) {
+        while (!Thread.currentThread().isInterrupted) {
             count--
             showResult(count.toString(), secondCoroutineResultView)
             delay(1_500)
@@ -86,7 +86,7 @@ class WS03CoroutinesProblemFragment : Fragment(R.layout.fragment_ws_03) {
     // Coroutine that produces next mod by 2 result every half second
     private suspend fun runModByTwoCoroutine() {
         var count = 1
-        while (count < 100) {
+        while (!Thread.currentThread().isInterrupted && count < 100) {
             count++
             val modByTwo = count % 2
             showResult(modByTwo.toString(), thirdCoroutineResultView)
