@@ -3,8 +3,10 @@ package com.android.fundamentals.workshop02
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
 import com.android.fundamentals.R
 
 class Workshop2Fragment : Fragment(R.layout.fragment_workshop_1_workshop_2) {
@@ -23,11 +25,7 @@ class Workshop2Fragment : Fragment(R.layout.fragment_workshop_1_workshop_2) {
         initViews(view)
         setUpListeners()
 
-        // TODO 10: Subscribe on public LiveData with "Workshop2ViewModel.State" from viewModel.
-        //  Use observe() method of LiveData.
-        //  Pass "this.viewLifecycleOwner" as LifecycleOwner
-        //  and { ... } lambda as lifecycle.Observer in parameters.
-        //  Update UI with "setState()" method from inside the lambda.
+        viewModel.state.observe(this.viewLifecycleOwner, this::setState)
     }
 
     override fun onDestroyView() {
@@ -63,21 +61,21 @@ class Workshop2Fragment : Fragment(R.layout.fragment_workshop_1_workshop_2) {
         }
 
     private fun setLoading(loading: Boolean) {
-        //TODO 01: Depending on "loading" value, set "loader" visibility = View.VISIBLE/GONE.
-        // And opposite, set "loginBtn" disabled/enabled.
+        loader?.isVisible = loading
+        loginBtn?.isEnabled = !loading
     }
 
     private fun showUserNameError() {
-        //TODO 02: Set error for "userNameInput" from strings resources (ws01_ws02_user_name_error).
+        userNameInput?.error = getString(R.string.ws01_ws02_user_name_error)
     }
 
     private fun showPasswordError() {
-        //TODO 03: Set error for "passwordInput" from strings resources (ws01_ws02_password_error).
+        passwordInput?.error = getString(R.string.ws01_ws02_password_error)
     }
 
     private fun showSuccess() {
-        //TODO 04: Set "loginBtn" visibility = View.INVISIBLE.
-        // And opposite, set "loginSuccess" visibility = View.VISIBLE.
+        loginBtn?.isVisible = false
+        loginSuccess?.isVisible = true
     }
 
     private fun initViews(view: View) {
@@ -98,7 +96,7 @@ class Workshop2Fragment : Fragment(R.layout.fragment_workshop_1_workshop_2) {
         val inputUserName = userNameInput?.text?.toString().orEmpty()
         val inputPassword = passwordInput?.text?.toString().orEmpty()
 
-        //TODO 05: Call viewModel's "login()" method.
+        viewModel.login(inputUserName, inputPassword)
     }
 
     companion object {
