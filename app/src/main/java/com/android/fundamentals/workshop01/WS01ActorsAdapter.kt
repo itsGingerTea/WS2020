@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.android.fundamentals.R
+import com.android.academy.fundamentals.R
 import com.android.fundamentals.data.models.Actor
 
 class WS01ActorsAdapter : RecyclerView.Adapter<EmptyViewHolder>() {

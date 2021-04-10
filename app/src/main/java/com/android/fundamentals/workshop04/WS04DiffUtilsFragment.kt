@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.android.fundamentals.R
+import com.android.academy.fundamentals.R
 import com.android.fundamentals.data.models.Actor
 import com.android.fundamentals.domain.ActorsDataSource
 import kotlinx.android.synthetic.main.fragment_actors.rv_actors

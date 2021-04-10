@@ -7,11 +7,11 @@ import android.widget.Button
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.android.fundamentals.R
+import com.android.academy.fundamentals.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
-import kotlinx.coroutines.cancel
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -34,7 +34,7 @@ class WS02FirstCoroutineTaskFragment: Fragment(R.layout.fragment_ws_02) {
             scope.launch {
                 readFromFile()
             }
-            if (Thread.currentThread().isInterrupted) scope.cancel()
+            //scope.cancel()
         }
     }
 
@@ -44,14 +44,17 @@ class WS02FirstCoroutineTaskFragment: Fragment(R.layout.fragment_ws_02) {
                 ?.useLines { lines ->
                     lines.forEach {
                         updateTextView(it)
-                        if (Thread.currentThread().isInterrupted) return@forEach
+                        //delay(2000)
+                        //if (!coroutineContext.isActive) return@forEach
                     }
                 }
     }
 
     private suspend fun updateTextView(text: String) = withContext(Main){
-        textView?.append("\n$text")
-        scrollView?.fullScroll(View.FOCUS_DOWN)
+        while(coroutineContext.isActive) {
+            textView?.append("\n$text")
+            scrollView?.fullScroll(View.FOCUS_DOWN)
+        }
     }
 
     // TODO(WS2:6)* update class variable 'scope' from Dispatchers.Main to Dispatchers.Default

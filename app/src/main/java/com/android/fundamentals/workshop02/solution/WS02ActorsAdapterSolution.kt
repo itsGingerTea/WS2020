@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.android.fundamentals.R
+import com.android.academy.fundamentals.R.*
 import com.android.fundamentals.data.models.Actor
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -14,8 +14,8 @@ import com.bumptech.glide.request.RequestOptions
 class WS02ActorsAdapterSolution : RecyclerView.Adapter<ActorsViewHolder>() {
 
     private val imageOption = RequestOptions()
-        .placeholder(R.drawable.ic_avatar_placeholder)
-        .fallback(R.drawable.ic_avatar_placeholder)
+        .placeholder(drawable.ic_avatar_placeholder)
+        .fallback(drawable.ic_avatar_placeholder)
         .circleCrop()
 
     private var actors = listOf<Actor>()
@@ -29,8 +29,8 @@ class WS02ActorsAdapterSolution : RecyclerView.Adapter<ActorsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActorsViewHolder {
         return when (viewType) {
-            VIEW_TYPE_EMPTY -> EmptyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_actors_empty, parent, false))
-            else -> DataViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_actors_data, parent, false))
+            VIEW_TYPE_EMPTY -> EmptyViewHolder(LayoutInflater.from(parent.context).inflate(layout.item_actors_empty, parent, false))
+            else -> DataViewHolder(LayoutInflater.from(parent.context).inflate(layout.item_actors_data, parent, false))
         }
     }
 
@@ -52,9 +52,9 @@ abstract class ActorsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemVi
 
 private class EmptyViewHolder(itemView: View) : ActorsViewHolder(itemView)
 private class DataViewHolder(itemView: View) : ActorsViewHolder(itemView) {
-    private val avatar: ImageView? = itemView.findViewById(R.id.iv_actor_avatar)
-    private val name: TextView? = itemView.findViewById(R.id.tv_actor_name)
-    private val oscarState: TextView? = itemView.findViewById(R.id.tv_actor_oscar_state)
+    private val avatar: ImageView? = itemView.findViewById(id.iv_actor_avatar)
+    private val name: TextView? = itemView.findViewById(id.tv_actor_name)
+    private val oscarState: TextView? = itemView.findViewById(id.tv_actor_oscar_state)
 
     fun onBind(options: RequestOptions, actor: Actor) {
         Glide.with(context)
@@ -65,7 +65,7 @@ private class DataViewHolder(itemView: View) : ActorsViewHolder(itemView) {
         name?.text = actor.name
 
         oscarState?.text = context.getString(
-            R.string.fragment_actors_avatar_oscar_state_text,
+            string.fragment_actors_avatar_oscar_state_text,
             actor.hasOscar.toString()
         )
     }

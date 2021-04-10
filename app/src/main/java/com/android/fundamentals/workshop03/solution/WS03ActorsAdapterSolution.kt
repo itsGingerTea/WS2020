@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.android.fundamentals.R
+import com.android.academy.fundamentals.R
 import com.android.fundamentals.data.models.Actor
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions

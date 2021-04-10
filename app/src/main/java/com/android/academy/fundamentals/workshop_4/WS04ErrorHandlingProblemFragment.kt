@@ -6,7 +6,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.android.fundamentals.R
+import com.android.academy.fundamentals.R
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.Default
 import java.io.IOException

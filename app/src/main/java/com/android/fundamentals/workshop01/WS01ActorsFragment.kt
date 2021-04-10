@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.android.fundamentals.R
+import com.android.academy.fundamentals.R
 import com.android.fundamentals.domain.ActorsDataSource
 
 class WS01ActorsFragment : Fragment() {

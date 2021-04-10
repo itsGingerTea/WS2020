@@ -7,9 +7,10 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.android.fundamentals.R
+import com.android.academy.fundamentals.R
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.Main
+import kotlin.coroutines.coroutineContext
 
 class WS03CoroutinesProblemFragment : Fragment(R.layout.fragment_ws_03) {
     // This is exception handler that will print caught errors to log
@@ -66,7 +67,7 @@ class WS03CoroutinesProblemFragment : Fragment(R.layout.fragment_ws_03) {
     // Coroutine that produces odd numbers every second
     private suspend fun runOddsCoroutine() {
         var count = 1
-        while (!Thread.currentThread().isInterrupted) {
+        while (coroutineContext.isActive) {
             count += 2
             showResult(count.toString(), firstCoroutineResultView)
             delay(1_000)
@@ -76,7 +77,7 @@ class WS03CoroutinesProblemFragment : Fragment(R.layout.fragment_ws_03) {
     // Coroutine that produces next negative numbers every 1.5 second
     private suspend fun runNegativesCoroutine() {
         var count = 0
-        while (!Thread.currentThread().isInterrupted) {
+        while (coroutineContext.isActive) {
             count--
             showResult(count.toString(), secondCoroutineResultView)
             delay(1_500)
@@ -86,7 +87,7 @@ class WS03CoroutinesProblemFragment : Fragment(R.layout.fragment_ws_03) {
     // Coroutine that produces next mod by 2 result every half second
     private suspend fun runModByTwoCoroutine() {
         var count = 1
-        while (!Thread.currentThread().isInterrupted && count < 100) {
+        while (coroutineContext.isActive && count < 100) {
             count++
             val modByTwo = count % 2
             showResult(modByTwo.toString(), thirdCoroutineResultView)

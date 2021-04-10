@@ -2,6 +2,7 @@ package com.android.fundamentals
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.android.academy.fundamentals.R
 import com.android.fundamentals.workshop04.WS04DiffUtilsFragment
 
 class MainActivity : AppCompatActivity() {
