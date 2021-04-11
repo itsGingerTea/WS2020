@@ -68,6 +68,8 @@ class WS01ThreadsTaskFragment: Fragment(R.layout.fragment_ws_01) {
             val msg = Message()
             msg.data.putString(MESSAGE_KEY, "Thread work")
             handler.sendMessage(msg)
+
+            Thread.currentThread().interrupt()
         }
     }
 
@@ -77,6 +79,8 @@ class WS01ThreadsTaskFragment: Fragment(R.layout.fragment_ws_01) {
             val msg = Message()
             msg.data.putString(MESSAGE_KEY, "Runnable work")
             handler.sendMessage(msg)
+
+            Thread.currentThread().interrupt()
         }
     }
 

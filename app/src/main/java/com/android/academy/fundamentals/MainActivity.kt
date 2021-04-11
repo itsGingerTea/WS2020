@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .addToBackStack(null)
-                .replace(R.id.fragment_container_view, WS02FirstCoroutineTaskFragment())
+                .add(R.id.fragment_container_view, WS02FirstCoroutineTaskFragment())
                 .commit()
         }
     }

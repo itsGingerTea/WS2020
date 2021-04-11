@@ -8,12 +8,9 @@ import android.widget.ScrollView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.android.academy.fundamentals.R
-import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
-import kotlinx.coroutines.isActive
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class WS02FirstCoroutineTaskFragment: Fragment(R.layout.fragment_ws_02) {
 
@@ -44,7 +41,7 @@ class WS02FirstCoroutineTaskFragment: Fragment(R.layout.fragment_ws_02) {
                 ?.useLines { lines ->
                     lines.forEach {
                         updateTextView(it)
-                        //delay(2000)
+                        delay(2000)
                         //if (!coroutineContext.isActive) return@forEach
                     }
                 }
