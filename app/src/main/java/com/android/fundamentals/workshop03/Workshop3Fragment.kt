@@ -2,8 +2,10 @@ package com.android.fundamentals.workshop03
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.fundamentals.R
@@ -12,7 +14,6 @@ import com.android.fundamentals.domain.location.LocationGenerator
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
-import kotlinx.coroutines.launch
 
 class Workshop3Fragment : Fragment(R.layout.fragment_workshop_3) {
 
@@ -35,13 +36,9 @@ class Workshop3Fragment : Fragment(R.layout.fragment_workshop_3) {
         initViews(view)
         setUpLocationsAdapter()
         setUpListeners()
-    
-        // TODO 06: Subscribe on public LiveDatas from viewModel:
-        //  first with "List<Location>", second with "Boolean" loading state.
-        //  Use observe() method of LiveData.
-        //  Pass "this.viewLifecycleOwner" as LifecycleOwner
-        //  and { ... } lambda as lifecycle.Observer in parameters.
-        //  Update "setLoading(...)" and "updateAdapter(...)" methods from lambdas.
+
+        viewModel.locationList.observe(this.viewLifecycleOwner, this::updateAdapter)
+        viewModel.state.observe(this.viewLifecycleOwner, this::setLoading)
     }
 
     override fun onDestroyView() {
@@ -54,8 +51,8 @@ class Workshop3Fragment : Fragment(R.layout.fragment_workshop_3) {
     }
 
     private fun setLoading(loading: Boolean) {
-        //TODO 01: Make "loader" visible/gone = loading
-        // and opposite "addBtn" visible/gone = !loading.
+        loader?.isVisible = loading
+        addBtn?.isEnabled = !loading
     }
 
     private fun initViews(view: View) {
@@ -71,24 +68,10 @@ class Workshop3Fragment : Fragment(R.layout.fragment_workshop_3) {
 
     private fun setUpListeners() {
         addBtn?.setOnClickListener {
-            // TODO 02: Change this "addNew()" with "viewModel addNew()" method.
-            addNew()
+            viewModel.addNew()
         }
     }
 
-    // TODO 08: Remove this method.
-    private fun addNew() {
-        mainScope.launch {
-            setLoading(loading = true)
-
-            val newLocation = generator.generateNewLocation()
-            locations.add(newLocation)
-            updateAdapter(locations)
-
-            setLoading(loading = false)
-        }
-    }
-    
     private fun updateAdapter(locations: List<Location>) {
         locationsAdapter.submitList(locations)
     }
