@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.android.fundamentals"
+    package="com.android.academy.fundamentals"
     >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:theme="@style/Theme.MyApp"
+        android:theme="@style/Theme.Fundamentals2020assignments"
         android:allowBackup="true"
         android:supportsRtl="true"
         android:label="@string/app_name"
@@ -23,6 +23,7 @@
             </intent-filter>
 
         </activity>
+
 
     </application>
 

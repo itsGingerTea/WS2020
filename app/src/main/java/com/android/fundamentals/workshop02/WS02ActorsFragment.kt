@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.android.fundamentals.R
+import com.android.academy.fundamentals.R
 import com.android.fundamentals.domain.ActorsDataSource
 
 class WS02ActorsFragment : Fragment() {
