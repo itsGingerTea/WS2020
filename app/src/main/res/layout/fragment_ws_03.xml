@@ -6,20 +6,20 @@
     android:layout_height="match_parent">
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/start_button"
+        android:id="@+id/startButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/value_16dp"
         android:layout_marginTop="@dimen/value_4dp"
         android:layout_marginEnd="@dimen/value_16dp"
         android:text="@string/start_coroutines"
-        app:layout_constraintEnd_toStartOf="@id/stop_button"
+        app:layout_constraintEnd_toStartOf="@id/stopButton"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/stop_button"
+        android:id="@+id/stopButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/value_16dp"
@@ -28,7 +28,7 @@
         android:enabled="false"
         android:text="@string/stop_coroutines"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/start_button"
+        app:layout_constraintStart_toEndOf="@id/startButton"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -40,13 +40,13 @@
         android:layout_marginTop="@dimen/value_4dp"
         android:layout_marginEnd="@dimen/value_16dp"
         android:text="@string/first_coroutine_label"
-        app:layout_constraintBottom_toTopOf="@id/first_coroutine_value"
+        app:layout_constraintBottom_toTopOf="@id/firstValue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/start_button" />
+        app:layout_constraintTop_toBottomOf="@id/startButton" />
 
     <TextView
-        android:id="@+id/first_coroutine_value"
+        android:id="@+id/firstValue"
         style="@style/TextAppearance.AppCompat.Body1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -68,13 +68,13 @@
         android:layout_marginTop="@dimen/value_4dp"
         android:layout_marginEnd="@dimen/value_16dp"
         android:text="@string/second_coroutine_label"
-        app:layout_constraintBottom_toTopOf="@id/second_coroutine_value"
+        app:layout_constraintBottom_toTopOf="@id/secondValue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/first_coroutine_value" />
+        app:layout_constraintTop_toBottomOf="@id/firstValue" />
 
     <TextView
-        android:id="@+id/second_coroutine_value"
+        android:id="@+id/secondValue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/value_16dp"
@@ -95,13 +95,13 @@
         android:layout_marginTop="@dimen/value_4dp"
         android:layout_marginEnd="@dimen/value_16dp"
         android:text="@string/third_coroutine_label"
-        app:layout_constraintBottom_toTopOf="@id/third_coroutine_value"
+        app:layout_constraintBottom_toTopOf="@id/thirdValue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/second_coroutine_value" />
+        app:layout_constraintTop_toBottomOf="@id/secondValue" />
 
     <TextView
-        android:id="@+id/third_coroutine_value"
+        android:id="@+id/thirdValue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/value_16dp"
@@ -122,13 +122,13 @@
         android:layout_marginTop="@dimen/value_4dp"
         android:layout_marginEnd="@dimen/value_16dp"
         android:text="@string/fourth_coroutine_label"
-        app:layout_constraintBottom_toTopOf="@id/fourth_coroutine_value"
+        app:layout_constraintBottom_toTopOf="@id/fourthValue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/third_coroutine_value" />
+        app:layout_constraintTop_toBottomOf="@id/thirdValue" />
 
     <TextView
-        android:id="@+id/fourth_coroutine_value"
+        android:id="@+id/fourthValue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/value_16dp"
@@ -137,7 +137,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/third_coroutine_value"
+        app:layout_constraintTop_toBottomOf="@id/thirdValue"
         tools:text="Fourth coroutine results" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

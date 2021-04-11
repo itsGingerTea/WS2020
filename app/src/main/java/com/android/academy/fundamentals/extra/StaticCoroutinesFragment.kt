@@ -34,7 +34,7 @@ class StaticCoroutinesFragment : Fragment(R.layout.fragment_static) {
             if (job == null) {
                 job = scope.launch {
                     var counter = 0
-                    while (true) {
+                    while (coroutineContext.isActive) {
                         delay(1_000)
                         counter += 1
                         resultView?.text = counter.toString()

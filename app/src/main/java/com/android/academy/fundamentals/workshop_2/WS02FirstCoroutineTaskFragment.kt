@@ -40,9 +40,9 @@ class WS02FirstCoroutineTaskFragment: Fragment(R.layout.fragment_ws_02) {
         file?.bufferedReader()
                 ?.useLines { lines ->
                     lines.forEach {
-                        updateTextView(it)
                         delay(2000)
-                        //if (!coroutineContext.isActive) return@forEach
+                        if (coroutineContext.isActive) updateTextView(it)
+                        else return@forEach
                     }
                 }
     }

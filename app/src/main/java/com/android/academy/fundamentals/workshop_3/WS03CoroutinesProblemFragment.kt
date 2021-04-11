@@ -112,7 +112,6 @@ class WS03CoroutinesProblemFragment : Fragment(R.layout.fragment_ws_03) {
     private fun cancelCoroutines() {
 
         scope.cancel()
-        Job().cancel()
 
         // Set new scope with fresh SupervisorJob after cancel
         scope = CoroutineScope(SupervisorJob() + Dispatchers.Default + exceptionHandler)
@@ -126,12 +125,12 @@ class WS03CoroutinesProblemFragment : Fragment(R.layout.fragment_ws_03) {
     }
 
     private fun cacheViews(view: View) {
-        startButton = view.findViewById(R.id.start_button)
-        stopButton = view.findViewById(R.id.stop_button)
-        firstCoroutineResultView = view.findViewById(R.id.first_coroutine_value)
-        secondCoroutineResultView = view.findViewById(R.id.second_coroutine_value)
-        thirdCoroutineResultView = view.findViewById(R.id.third_coroutine_value)
-        fourthCoroutineResultView = view.findViewById(R.id.fourth_coroutine_value)
+        startButton = view.findViewById(R.id.startButton)
+        stopButton = view.findViewById(R.id.stopButton)
+        firstCoroutineResultView = view.findViewById(R.id.firstValue)
+        secondCoroutineResultView = view.findViewById(R.id.secondValue)
+        thirdCoroutineResultView = view.findViewById(R.id.thirdValue)
+        fourthCoroutineResultView = view.findViewById(R.id.fourthValue)
     }
 
     private fun toggleButtons(start: Boolean) {
