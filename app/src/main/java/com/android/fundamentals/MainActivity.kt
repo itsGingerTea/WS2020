@@ -5,6 +5,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.android.fundamentals.workshop01.Workshop1LoginFragment
+import com.android.fundamentals.workshop01.Workshop1ProfileFragment
 import com.android.fundamentals.workshop01.Workshop1ViewModel
 import com.android.fundamentals.workshop01.Workshop1ViewModelFactory
 import com.android.fundamentals.workshop02.Workshop2Fragment
@@ -35,12 +36,10 @@ class MainActivity : AppCompatActivity(), Router {
     override fun openWorkshop3() = openFragment(Ws03Fragment.newInstance())
 
     private fun checkUserAndOpenFragmentForWS1() {
-        // TODO 06 check userIsLoggedIn via Workshop1ViewModel
-        val userIsLoggedIn = false
-        if (!userIsLoggedIn) {
+        if (!ws1ViewModel.checkUserIsLoggedIn()) {
             openFragment(Workshop1LoginFragment.newInstance())
         } else {
-            //openFragment(Workshop1ProfileFragment.newInstance())
+            openFragment(Workshop1ProfileFragment.newInstance())
         }
     }
 
